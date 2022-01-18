@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #17a3b838;">
+  <a class="navbar-brand" href="#">MEAN Attendace</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto" *ngIf="attendanceService.isLoggedIn && attendanceService.isStudent">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/student/profile/{{attendanceService.loggedInUser.user.id}}">Profile</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/login">Attendace</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">QR Code</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Register a Course</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav mr-auto" *ngIf="attendanceService.isLoggedIn && attendanceService.isTeacher">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/home/faculty">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home">Take Attendance</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/faculty/students">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Secret QR Course</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Register a Course</a>
+          </li> -->
+        </ul>
+
+        <div class="form-inline my-2 my-lg-0" *ngIf="attendanceService.isLoggedIn">
+          <span style="margin-right: 10px;">  Welcome {{attendanceService.loggedInUser.user.username}} </span>
+          <button class="btn btn-info my-2 my-sm-0" (click)="logout()">Logout</button>
+        </div>
+      
+  </div>
+
+</nav>
+
+<div class="container-fluide">
+
+  <app-messaging></app-messaging>
+
+  <router-outlet></router-outlet>
+  
+</div>
